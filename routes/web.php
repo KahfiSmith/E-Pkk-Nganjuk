@@ -58,4 +58,5 @@ Route::group(['namespace' => 'backend'], function()
 });
 
 Route::resource('input_berita', App\Http\Controllers\backend\InputBeritaController::class);   
+// Route::resource('input_berita', App\Http\Controllers\backend\InputBeritaController::class);  
  
