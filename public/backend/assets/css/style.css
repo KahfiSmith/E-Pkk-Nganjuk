@@ -1231,3 +1231,9 @@ h6 {
   font-size: 13px;
   color: #012970;
 }
+
+.carousel-inner{
+  width: 250px;
+  max-height: 250px !important;
+  border-radius: 10px;
+}

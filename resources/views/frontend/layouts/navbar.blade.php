@@ -8,20 +8,23 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="landing-page#hero">Beranda</a></li>
-          <li><a class="nav-link scrollto" href="landing-page#services">Program Kerja</a></li>
-          <li><a class="nav-link scrollto " href="landing-page#portfolio">Galeri</a></li>
+          <li><a class="nav-link scrollto" href="{{ route('home.index') }}#hero">Beranda</a></li>
+          <li><a class="nav-link scrollto" href="{{ route('home.index') }}#portfolio">Galeri</a></li>
+          <li><a class="nav-link scrollto " href="{{ route('home.index') }}#service">Program Kerja</a></li>
+          
           <li class="dropdown"><a href="#informasi"><span>Informasi</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="berita">Berita</a></li>
-              <li><a href="laporan">Laporan</a></li>
-              <li><a href="pengumuman">Pengumuman</a></li>
+              <li><a href="{{ route('berita.index') }}">Berita</a></li>
+              <li><a href="{{ route('showkes.index') }}">Laporan Kesehatan</a></li>
+              <li><a href="{{ route('showling.index') }}">Laporan Kelestarian Lingkungan Hidup</a></li>
+              <li><a href="{{ route('showhat.index') }}">Laporan Perencanaan Sehat</a></li>
+              <li><a href="{{ route('pengumuman.index') }}">Pengumuman</a></li>
             </ul>
           </li>
           <li class="dropdown"><a href="#"><span>Profil</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="visimisi">Visi Misi</a></li>
-              <li><a href="struktur">Struktur Organisasi</a></li>
+             
+              <li><a href="{{ route('visimisi.index') }}">Visi Misi</a></li>
               <li><a href="lambangpkk">Arti Lambang PKK</a></li>
               <li><a href="sejarah">Sejarah</a></li>
               <li><a href="mars">Mars PKK</a></li>

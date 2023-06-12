@@ -27,9 +27,6 @@
   <!-- Template Main CSS File -->
   <link href="{{ asset ('frontend/assets/css/style.css')}}" rel="stylesheet">
 
-  {{-- login --}}
-  <link rel="stylesheet" href="/css/login.css">
-
   <!-- =======================================================
   * Template Name: BizLand
   * Updated: Mar 10 2023 with Bootstrap v5.2.3
@@ -40,6 +37,7 @@
 </head>
 
 <body>
+  
   @include('frontend/layouts.navbar')
   
   @yield('content')
@@ -47,7 +45,8 @@
 
   <!-- ======= Footer ======= -->
   <footer id="footer">
-    <div class="footer-newsletter">
+
+    {{-- <div class="footer-newsletter">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-6">
@@ -59,56 +58,37 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> --}}
 
     <div class="footer-top">
       <div class="container">
         <div class="row">
 
-          <div class="col-lg-3 col-md-6 footer-contact">
+        <div class="col-lg-4 col-md-6 footer-contact">
             <h3>TP - PKK <span>Kabupaten Nganjuk</span></h3>
-            <p>
-              A108 Adam Street <br>
-              New York, NY 535022<br>
-              United States <br><br>
-              <strong>Phone:</strong> +1 5589 55488 55<br>
-              <strong>Email:</strong> info@example.com<br>
-            </p>
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Berita Terbaru</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Program Kerja</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Our Social Networks</h4>
-            <p>Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p>
-            <div class="social-links mt-3">
-              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-              <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-              <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            <div class="mt-3">
+              <h6 class="p-2 ">Kontak :</h6>
+              <div class="p-2 "><a href="#" class=""><i class="bi bi-whatsapp"></i></a> 087754215178</div>
+              <div class="p-2 "><a href="#" class="email"><i class="bi bi-envelope"></i></a> pkk.kabnganjuk@gmail.com</div>
             </div>
           </div>
+
+         
+
+          <div class="col-lg-4 col-md-6 footer-links">
+            <h6 class="p-2 ">Alamat :</h6>
+            <p class="p-2 ">Jl. Dermojoyo No.21, Payaman, Kec. Nganjuk, Kabupaten Nganjuk, Jawa Timur 64418</p> 
+          </div>
+
+          <div class="col-lg-4 col-md-6 footer-links">
+            <h6 class="p-2 ">Jumlah Pengunjung :</h6>
+            <p class=" ">Hari ini :&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;2</p> 
+            <p class=" ">Bulan ini :&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&ensp;&ensp;13</p>
+            <p class=" ">Tahun ini :&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;24</p>
+            <p class=" ">Semua Pengunjung :&emsp;&emsp;90</p>
+          </div>
+
+         
 
         </div>
       </div>
@@ -123,7 +103,7 @@
         <!-- You can delete the links only if you purchased the pro version. -->
         <!-- Licensing information: https://bootstrapmade.com/license/ -->
         <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/bizland-bootstrap-business-template/ -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+       
       </div>
     </div>
   </footer><!-- End Footer -->

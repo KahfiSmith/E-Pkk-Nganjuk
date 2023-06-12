@@ -22,9 +22,20 @@ class LoginRequest extends FormRequest
     {
         return [
             'email' => ['required', 'string', 'email'],
-            'password' => ['required', 'string', 'min:6'],
+            'password' => ['required', 'string', 'min:8'],
         ];
     }
+
+    public function messages(): array
+{
+    return [
+        'email.required' => 'Harap lengkapi email anda',
+        'email.email' => 'Harap gunakan format email',
+        'password.required' => 'Harap lengkapi kata sandi anda',
+        'password.min' => 'Kata sandi minimal :min karakter',
+        // 'password.confirmed' => 'Kata sandi yang anda gunakan salah',
+    ];
+}
 
     public function authenticate(): void
     {

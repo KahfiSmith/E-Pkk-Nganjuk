@@ -33,6 +33,9 @@
  <!-- Template Main CSS File -->
  <link href="backend/assets/css/style.css" rel="stylesheet">
 
+  {{-- fontawesome --}}
+  <link rel="stylesheet" type="text/css" href="{{ asset('fontawesome/css/all.min.css') }}">
+
 </head>
 
 <body>
@@ -59,64 +62,69 @@
       <ul class="sidebar-nav" id="sidebar-nav">
   
         <li class="nav-item">
-          <a class="nav-link collapsed" href="dashboard">
+          <a class="nav-link collapsed" href="{{ route('dashboard') }}">
             <i class="bi bi-grid"></i>
             <span>Dashboard</span>
           </a>
         </li><!-- End Dashboard Nav -->
   
         <li class="nav-item">
-          <a class="nav-link " data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-            <i class="bi bi-menu-button-wide"></i><span>Menu</span><i class="bi bi-chevron-down ms-auto"></i>
+          <a class="nav-link" href="{{ route('input_berita.index') }}">
+            <i class="fa-solid fa-newspaper"></i>
+            <span>Berita</span>
           </a>
-          <ul id="components-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
-            <li>
-              <a href="input_berita" class="active">
-                <i class="bi bi-circle"></i><span>Berita</span>
-              </a>
-            </li>
-            <li>
-              <a href="components-accordion.html">
-                <i class="bi bi-circle"></i><span>Pengumuman</span>
-              </a>
-            </li>
-          </ul>
-        </li><!-- End Components Nav -->
+        </li><!-- End Dashboard Nav -->
+  
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="{{ route('input_pengumuman.index') }}">
+            <i class="fa-sharp fa-solid fa-bullhorn"></i>
+            <span>Pengumuman</span>
+          </a>
+        </li><!-- End Dashboard Nav -->
 
         <li class="nav-item">
-          <a class="nav-link collapsed" href="{{asset('backend/pages-faq.html')}}">
-            <i class="bi bi-person"></i>
+          <a class="nav-link collapsed" href="{{ route('galeri.index') }}">
+            <i class="fa-solid fa-image"></i>
             <span>Galeri</span>
           </a>
         </li><!-- End Profile Page Nav -->
   
         <li class="nav-item">
-          <a class="nav-link collapsed" href="{{asset('backend/pages-faq.html')}}">
-            <i class="bi bi-person"></i>
-            <span>Review Laporan</span>
+          <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+            <i class="fa-solid fa-book"></i><span>Tinjauan Laporan</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
-        </li><!-- End Profile Page Nav -->
+          <ul id="components-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+            <li>
+              <a href="{{ route('kesehatan.index') }}">
+                <i class="bi bi-circle"></i><span>Kesehatan</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('kelestarian_lingkungan_hidup.index') }}">
+                <i class="bi bi-circle"></i><span>Kelestarian Lingkungan Hidup</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('perencanaan_sehat.index') }}">
+                <i class="bi bi-circle"></i><span>Perencanaan Sehat</span>
+              </a>
+            </li>
+          </ul>
+        </li><!-- End Components Nav -->
   
         <li class="nav-heading">Halaman</li>
 
         <li class="nav-item">
-          <a class="nav-link collapsed" href="{{asset('backend/users-profile.html')}}">
-            <i class="bi bi-person"></i>
-            <span>Profile</span>
+          <a class="nav-link collapsed" href="{{ route('profile.index') }}" >
+            <i class="fa-solid fa-user"></i>
+            <span>Profil</span>
           </a>
-        </li><!-- End Profile Page Nav -->
+        </li>
   
         <li class="nav-item">
-          <a class="nav-link collapsed" href="{{asset('backend/pages-contact.html')}}">
-            <i class="bi bi-envelope"></i>
-            <span>Kontak</span>
-          </a>
-        </li><!-- End Contact Page Nav -->
-  
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="/logout">
-            <i class="bi bi-envelope"></i>
-            <span>Logout</span>
+          <a class="nav-link collapsed" href="/logout" onclick="return confirm('Apakah anda yakin ingin keluar?')">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Keluar</span>
           </a>
         </li><!-- End Contact Page Nav -->
   
@@ -140,38 +148,42 @@
                 <div class="form-outline mb-4">
                   <label for="image" class="form-label">Gambar</label>
                   <input type="file" name="image" id="image" class="form-control"
-                    required oninvalid="this.setCustomValidity('Harap unggah gambar berita')" 
+                    required oninvalid="this.setCustomValidity('Harap unggah gambar')" 
                     oninput="this.setCustomValidity('')"/>
                 </div>
-                
+
                 <div class="form-outline mb-4">
                     <label for="judul" class="form-label">Judul</label>
                     <input type="text" name="judul" id="judul" class="form-control"
-                    required oninvalid="this.setCustomValidity('Harap lengkapi judul berita')" 
+                    required oninvalid="this.setCustomValidity('Harap lengkapi judul')" 
                     oninput="this.setCustomValidity('')"
-                    placeholder="Masukkan Judul Berita"/>
+                    placeholder="Masukkan Judul"/>
                 </div>
 
                 <div class="form-outline mb-4">
                     <label for="deskripsi" class="form-label">Deskripsi</label>
-                    <textarea class="form-control" name="deskripsi" rows="6" id="deskripsi" placeholder="Masukkan Dekripsi Berita" required oninvalid="this.setCustomValidity('Harap lengkapi deskripsi berita')" 
+                    <textarea class="form-control" name="deskripsi" rows="6" id="deskripsi" placeholder="Masukkan Dekripsi Berita" required oninvalid="this.setCustomValidity('Harap lengkapi deskripsi')" 
                     oninput="this.setCustomValidity('')"></textarea>
-                    <div class="invalid-feedback">
-                    Harap lengkapi deskripsi berita
-                    </div>
                 </div>
-
+              
+                <div class="form-outline mb-4">
+                  <label for="file" class="form-label">Upload Dokumen Pendukung (Opsional)</label>
+                  <input type="file" name="file" id="file" class="form-control"
+                  class="dropzone"
+                    oninput="this.setCustomValidity('')"/>
+                </div>
+              
                 <div class="text-end pt-1 pb-1 mt-4">
                   <button class="btn btn-primary ps-xxl-5 pe-xxl-5 mr-auto background-blue-1 mb-2 fw-semibold fs-5" type="submit">Kirim</button>
                 </div>
-
               </form>
+              
 
             </div>
           </div>
 
           <div class="pagetitle">
-            <h1>List Berita</h1>
+            <h1>Daftar Berita</h1>
           </div><!-- End Page Title -->
 
           @if ($message = Session::get('success'))
@@ -183,13 +195,14 @@
           <div class="card mt-2">
             <div class="card-body">
 
-              <table class="table table-striped">
+              <table class="table">
                 <thead>
                   <tr>
                     <th scope="col">No</th>
                     <th scope="col">Gambar</th>
                     <th scope="col">Judul</th>
                     <th scope="col">Deskripsi</th>
+                    <th scope="col">File</th>
                     <th scope="col">Aksi</th>
                   </tr>
                 </thead>
@@ -200,10 +213,11 @@
                   @forelse ($data as $berita)
                   <tr>
                     <th scope="row">{{ $no++ }}</th>
-                    <td><img src="{{ asset('images/'.$berita->image) }}" class="rounded" style="width: 150px">
+                    <td><img src="{{ asset('storage/berita/'.$berita->image) }}" class="rounded" width="150" height="150">
                     </td>
-                    <td>{{ $berita->judul }}</td>
-                    <td>{{ Str::limit($berita->deskripsi, 75) }}</td>
+                    <td>{{ Str::limit($berita->judul, 25) }}</td>
+                    <td>{{ Str::limit($berita->deskripsi, 25) }}</td>
+                    <td>{{ Str::limit($berita->file, 20) }}</td>
                     <td>
                         <a href="{{ route('input_berita.edit', $berita->id) }}" class="btn btn-sm btn-tambah">EDIT</a>
 
@@ -248,6 +262,29 @@
 
 <!-- Template Main JS File -->
 <script src="backend/assets/js/main.js"></script>
+
+<script type="text/javascript">
+        Dropzone.autoDiscover = false;
+        var myDropzone = new Dropzone('#pdf', {
+          maxFilesize: 1,
+          acceptedFiles: ".pdf",
+          addRemoveLinks: true,
+          autoProcessQueue: false,
+          init: function() {
+            $("button").click(function (e) {
+              e.preventDefault();
+              myDropzone.processQueue();
+            });
+
+            this.on('sending', function(file, xhr, formData) {
+              var data = $('#pdf').serializeArray();
+              $.each(data, function(key, el) {
+                formData.append(el.name, el.value);
+              });
+            });
+          }
+        });
+</script>
 
 </body>
 

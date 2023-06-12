@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>{{config('app.name')}}</title>
+  <title>Dashboard</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -24,7 +24,10 @@
   <link href="{{asset('backend/assets/vendor/simple-datatables/style.css')}}" rel="stylesheet">  
 
   <!-- Template Main CSS File -->
-  <link href="backend/assets/css/style.css" rel="stylesheet">
+  <link href="{{ asset('backend/assets/css/style.css') }}" rel="stylesheet">
+
+  {{-- fontawesome --}}
+  <link rel="stylesheet" type="text/css" href="{{ asset('fontawesome/css/all.min.css') }}">
 
   <!-- =======================================================
   * Template Name: NiceAdmin
@@ -41,7 +44,7 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="" class="logo d-flex align-items-center">
         <img src="{{asset('backend/assets/img/pkk.png')}}" alt="">
         <span class="d-none d-lg-block">PKK NGANJUK</span>
       </a>

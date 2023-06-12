@@ -12,3 +12,4 @@ class Berita extends Model
         'id'
     ];
 }
+$beritas = Berita::groupBy('judul');

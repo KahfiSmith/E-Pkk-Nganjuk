@@ -49,13 +49,19 @@
                         {{ $message }}
                       </div>
                       @endif
+
+                      @if ($message = Session::get('reset'))
+                      <div class="alert alert-success" role="alert">
+                        {{ $message }}
+                      </div>
+                      @endif
                       
                       <form action="{{ route('login') }}" method="POST">
                         @csrf                 
                         <div class="form-outline mb-4">
                             <label for="email" class="form-label">Email</label>
                             <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror"
-                            required autocomplete="email" oninvalid="this.setCustomValidity('Harap lengkapi data anda')" 
+                            required autocomplete="email" oninvalid="this.setCustomValidity('Harap lengkapi email anda')" 
                             oninput="this.setCustomValidity('')"
                             placeholder="Masukkan Email Anda" value="{{ old('email')}}"/>
                             @error('email')
@@ -65,30 +71,23 @@
                         </div>
       
                         <div class="form-outline mb-5">
-                            <label for="password" class="form-label">Password</label>
+                            <label for="password" class="form-label">Kata Sandi</label>
                             <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror" 
-                            required autocomplete="password" oninvalid="this.setCustomValidity('Harap lengkapi data anda')" 
+                            required autocomplete="password" oninvalid="this.setCustomValidity('Harap lengkapi kata sandi anda')" 
                             oninput="this.setCustomValidity('')"
-                            placeholder="Masukkan Password Anda"/>
+                            placeholder="Masukkan Kata Sandi Anda"/>
                             @error('password')
                             <div class="invalid-feedback">
                               {{ 'Password yang anda masukkan salah' }}
                             </div> @enderror
                         </div>
-
-                        {{-- <div class="block mt-1 mb-5">
-                          <label for="remember_me" class="inline-flex items-center">
-                              <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                              <span class="ml-2 text-sm text-gray-600 dark:text-gray-400">Ingatkan saya</span>
-                          </label>
-                      </div> --}}
       
                         <div class="text-center pt-1 mb-3 pb-1">
-                          <button class="btn btn-primary form-control background-blue-1 mb-3 fw-semibold fs-5" type="submit">Login</button>
+                          <button class="btn btn-primary form-control background-blue-1 mb-3 fw-semibold fs-5" type="submit">Masuk</button>
                         </div>
       
                         <div class="d-flex align-items-center justify-content-center pb-4">
-                            <a class="text-muted" href="{{  route('password.request')  }}">Lupa password?</a>
+                            <a class="text-muted" href="{{  route('password.request')  }}">Lupa kata sandi?</a>
                         </div>
                       </form>
                     </div>
@@ -99,6 +98,19 @@
           </div>
         </div>
       </section>
+
+      <!-- Vendor JS Files -->
+<script src="backend/assets/vendor/apexcharts/apexcharts.min.js"></script>
+<script src="backend/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="backend/assets/vendor/chart.js/chart.umd.js"></script>
+<script src="backend/assets/vendor/echarts/echarts.min.js"></script>
+<script src="backend/assets/vendor/quill/quill.min.js"></script>
+<script src="backend/assets/vendor/simple-datatables/simple-datatables.js"></script>
+<script src="backend/assets/vendor/tinymce/tinymce.min.js"></script>
+<script src="backend/assets/vendor/php-email-form/validate.js"></script>
+
+<!-- Template Main JS File -->
+<script src="backend/assets/js/main.js"></script>
 </body>
 
 </html>
