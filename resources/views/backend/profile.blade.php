@@ -67,7 +67,12 @@
             <span>Dashboard</span>
           </a>
         </li><!-- End Dashboard Nav -->
-  
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="{{ route('ttd.index') }}">
+          <i class="fa-solid fa-signature"></i>
+            <span>Tanda Tangan</span>
+          </a>
+        </li><!-- End Dashboard Nav -->
         <li class="nav-item">
           <a class="nav-link collapsed" href="{{ route('input_berita.index') }}">
             <i class="fa-solid fa-newspaper"></i>
@@ -76,37 +81,67 @@
         </li><!-- End Dashboard Nav -->
   
         <li class="nav-item">
-          <a class="nav-link collapsed" href="{{ route('input_pengumuman.index') }}">
-            <i class="fa-sharp fa-solid fa-bullhorn"></i>
-            <span>Pengumuman</span>
+          <a class="nav-link collapsed" data-bs-target="#galeri_nav" data-bs-toggle="collapse" href="#">
+            <i class="fa-solid fa-image"></i><span>Galeri</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
-        </li><!-- End Dashboard Nav -->
+          <ul id="galeri_nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+            <li>
+              <a href="{{ route('galeribidangumum.index') }}">
+                <i class="bi bi-circle"></i><span>Bidang Umum</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('galeripokja1.index') }}">
+                <i class="bi bi-circle"></i><span>Kelompok Kerja 1</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('galeripokja2.index') }}">
+                <i class="bi bi-circle"></i><span>Kelompok Kerja 2</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('galeripokja3.index') }}">
+                <i class="bi bi-circle"></i><span>Kelompok Kerja 3</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('galeripokja4.index') }}">
+                <i class="bi bi-circle"></i><span>Kelompok Kerja 4</span>
+              </a>
+            </li>
+          </ul>
+        </li><!-- End Components Nav -->
 
-        <li class="nav-item">
-          <a class="nav-link collapsed" href="{{ route('galeri.index') }}">
-            <i class="fa-solid fa-image"></i>
-            <span>Galeri</span>
-          </a>
-        </li><!-- End Profile Page Nav -->
   
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-            <i class="fa-solid fa-book"></i><span>Tinjauan Laporan</span><i class="bi bi-chevron-down ms-auto"></i>
+            <i class="fa-solid fa-book"></i><span>Kelompok Kerja</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="components-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
             <li>
-              <a href="{{ route('kesehatan.index') }}">
-                <i class="bi bi-circle"></i><span>Kesehatan</span>
+              <a href="{{ route('accbidangumum.index') }}">
+                <i class="bi bi-circle"></i><span>Bidang Umum</span>
               </a>
             </li>
             <li>
-              <a href="{{ route('kelestarian_lingkungan_hidup.index') }}">
-                <i class="bi bi-circle"></i><span>Kelestarian Lingkungan Hidup</span>
+              <a href="{{ route('pokja1.index') }}">
+                <i class="bi bi-circle"></i><span>Kelompok Kerja 1</span>
               </a>
             </li>
             <li>
-              <a href="{{ route('perencanaan_sehat.index') }}">
-                <i class="bi bi-circle"></i><span>Perencanaan Sehat</span>
+              <a href="{{ route('pokja2.index') }}">
+                <i class="bi bi-circle"></i><span>Kelompok Kerja 2</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('pokja3.index') }}">
+                <i class="bi bi-circle"></i><span>Kelompok Kerja 3</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('pokja4.index') }}">
+                <i class="bi bi-circle"></i><span>Kelompok Kerja 4</span>
               </a>
             </li>
           </ul>
@@ -122,7 +157,7 @@
         </li>
   
         <li class="nav-item">
-          <a class="nav-link collapsed" href="/logout" onclick="return confirm('Apakah anda yakin ingin keluar?')">
+          <a class="nav-link collapsed" href="logout" onclick="return confirm('Apakah anda yakin ingin keluar?')">
             <i class="fa-solid fa-right-from-bracket"></i>
             <span>Keluar</span>
           </a>
@@ -221,18 +256,20 @@
                         </div>
                       </div>
   
-                      <div class="row mb-3">
+                      <div class="row">
                         <label for="nomer_telepon" class="col-md-4 col-lg-3 col-form-label">Nomer telepon</label>
                         <div class="col-md-8 col-lg-9">
-                          <input name="nomer_telepon" type="number" class="form-control @error('nomer_telepon') is-invalid @enderror" id="nomer_telepon" placeholder="Masukkan Nomer Telepon" required oninvalid="this.setCustomValidity('Harap lengkapi nomer telepon')" 
+                          <input name="nomer_telepon" type="tel" pattern="^62\d{10,13}$" class="form-control @error('nomer_telepon') is-invalid @enderror" id="nomer_telepon" placeholder="Masukkan Nomer Telepon" required oninvalid="this.setCustomValidity('Nomer telepon tidak sesuai')" 
                           oninput="this.setCustomValidity('')" value="{{ $user->nomer_telepon }}">
-                          @error('nomer_telepon')
+                      <p class="mt-1">*Nomer telepon harus diawali dengan 62 dan diikuti 10-13 digit angka</p>
+                      @error('nomer_telepon')
                           <div class="invalid-feedback">
                             {{ $message }}
                           </div>
                           @enderror
                         </div>
                       </div>
+
   
                       <div class="row mb-3">
                         <label for="alamat" class="col-md-4 col-lg-3 col-form-label">Alamat</label>

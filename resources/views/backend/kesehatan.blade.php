@@ -9,7 +9,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Kesehatan</title>
+  <title>Laporan</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -67,7 +67,12 @@
             <span>Dashboard</span>
           </a>
         </li><!-- End Dashboard Nav -->
-  
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="{{ route('ttd.index') }}">
+          <i class="fa-solid fa-signature"></i>
+            <span>Tanda Tangan</span>
+          </a>
+        </li><!-- End Dashboard Nav -->
         <li class="nav-item">
           <a class="nav-link collapsed" href="{{ route('input_berita.index') }}">
             <i class="fa-solid fa-newspaper"></i>
@@ -83,35 +88,71 @@
         </li><!-- End Dashboard Nav -->
 
         <li class="nav-item">
-          <a class="nav-link collapsed" href="{{ route('galeri.index') }}">
-            <i class="fa-solid fa-image"></i>
-            <span>Galeri</span>
+          <a class="nav-link collapsed" data-bs-target="#galeri_nav" data-bs-toggle="collapse" href="#">
+            <i class="fa-solid fa-image"></i><span>Galeri</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
-        </li><!-- End Profile Page Nav -->
-  
-        <li class="nav-item">
-          <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-            <i class="fa-solid fa-book"></i><span>Tinjauan Laporan</span><i class="bi bi-chevron-down ms-auto"></i>
-          </a>
-          <ul id="components-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
+          <ul id="galeri_nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
             <li>
-              <a href="{{ route('kesehatan.index') }}" class="active">
-                <i class="bi bi-circle"></i><span>Kesehatan</span>
+              <a href="{{ route('galeribidangumum.index') }}">
+                <i class="bi bi-circle"></i><span>Bidang Umum</span>
               </a>
             </li>
             <li>
-              <a href="{{ route('kelestarian_lingkungan_hidup.index') }}">
-                <i class="bi bi-circle"></i><span>Kelestarian Lingkungan Hidup</span>
+              <a href="{{ route('galeripokja1.index') }}">
+                <i class="bi bi-circle"></i><span>Kelompok Kerja 1</span>
               </a>
             </li>
             <li>
-              <a href="{{ route('perencanaan_sehat.index') }}">
-                <i class="bi bi-circle"></i><span>Perencanaan Sehat</span>
+              <a href="{{ route('galeripokja2.index') }}">
+                <i class="bi bi-circle"></i><span>Kelompok Kerja 2</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('galeripokja3.index') }}">
+                <i class="bi bi-circle"></i><span>Kelompok Kerja 3</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('galeripokja4.index') }}">
+                <i class="bi bi-circle"></i><span>Kelompok Kerja 4</span>
               </a>
             </li>
           </ul>
         </li><!-- End Components Nav -->
-
+  
+        <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+            <i class="fa-solid fa-book"></i><span>Kelompok Kerja</span><i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+          <ul id="components-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
+            <li>
+              <a href="{{ route('accbidangumum.index') }}">
+                <i class="bi bi-circle"></i><span>Bidang Umum</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('pokja1.index') }}">
+                <i class="bi bi-circle"></i><span>Kelompok Kerja 1</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('pokja2.index') }}">
+                <i class="bi bi-circle"></i><span>Kelompok Kerja 2</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('pokja3.index') }}">
+                <i class="bi bi-circle"></i><span>Kelompok Kerja 3</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('pokja4.index') }}" class="active">
+                <i class="bi bi-circle"></i><span>Kelompok Kerja 4</span>
+              </a>
+            </li>
+          </ul>
+        </li><!-- End Components Nav -->
+  
         <li class="nav-heading">Halaman</li>
 
         <li class="nav-item">
@@ -122,12 +163,11 @@
         </li>
   
         <li class="nav-item">
-          <a class="nav-link collapsed" href="/logout" onclick="return confirm('Apakah anda yakin ingin keluar?')">
+          <a class="nav-link collapsed" href="logout" onclick="return confirm('Apakah anda yakin ingin keluar?')">
             <i class="fa-solid fa-right-from-bracket"></i>
             <span>Keluar</span>
           </a>
         </li><!-- End Contact Page Nav -->
-  
       </ul>
   
     </aside><!-- End Sidebar-->
@@ -136,6 +176,8 @@
     <div class="pagetitle">
             <h1>Daftar Laporan Kesehatan</h1>
           </div><!-- End Page Title -->
+          <div class="box-list">
+			</div>
 
           @if ($message = Session::get('success'))
           <div class="alert alert-success" role="alert">
@@ -150,8 +192,7 @@
                 <thead>
                   <tr>
                     <th scope="col">No</th>
-                    <th scope="col">Gambar</th>
-                    <th scope="col">Kategori</th>
+                    <th class="text-center" scope="col">Kecamatan</th>
                     <th class="text-center" scope="col">Posyandu</th>
                     <th class="text-center" scope="col">Posyandu Integrasi</th>
                     <th class="text-center" scope="col">Klp</th>
@@ -170,9 +211,7 @@
                   @forelse ($data as $sehat)
                   <tr>
                     <th scope="row">{{ $no++ }}</th>
-                    <td><img src="{{ asset('frontend2/assets/Bidang_kesehatan/'.$sehat->gambar_upload) }}" class="rounded img" width="200" height="200">
-                    </td>
-                    <td>{{ $sehat->kategori_laporan }}</td>
+                    <td class="text-center">{{ $sehat->nama_kec }}</td>
                     <td class="text-center">{{ $sehat->jumlah_posyandu }}</td>
                     <td class="text-center">{{ $sehat->jumlah_posyandu_iterasi }}</td>
                     <td class="text-center">{{ $sehat->jumlah_klp }}</td>
@@ -194,7 +233,7 @@
                   </tr>
                   @empty
                   <div class="alert alert-danger mt-4">
-                      Tidak ada data kesehatan
+                      Tidak ada data laporan kesehatan
                   </div> 
                   @endforelse
                   

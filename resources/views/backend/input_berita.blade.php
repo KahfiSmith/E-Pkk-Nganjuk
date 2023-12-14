@@ -67,14 +67,19 @@
             <span>Dashboard</span>
           </a>
         </li><!-- End Dashboard Nav -->
-  
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="{{ route('ttd.index') }}">
+          <i class="fa-solid fa-signature"></i>
+            <span>Tanda Tangan</span>
+          </a>
+        </li><!-- End Dashboard Nav -->
         <li class="nav-item">
           <a class="nav-link" href="{{ route('input_berita.index') }}">
             <i class="fa-solid fa-newspaper"></i>
             <span>Berita</span>
           </a>
         </li><!-- End Dashboard Nav -->
-  
+
         <li class="nav-item">
           <a class="nav-link collapsed" href="{{ route('input_pengumuman.index') }}">
             <i class="fa-sharp fa-solid fa-bullhorn"></i>
@@ -83,30 +88,66 @@
         </li><!-- End Dashboard Nav -->
 
         <li class="nav-item">
-          <a class="nav-link collapsed" href="{{ route('galeri.index') }}">
-            <i class="fa-solid fa-image"></i>
-            <span>Galeri</span>
+          <a class="nav-link collapsed" data-bs-target="#galeri_nav" data-bs-toggle="collapse" href="#">
+            <i class="fa-solid fa-image"></i><span>Galeri</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
-        </li><!-- End Profile Page Nav -->
+          <ul id="galeri_nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+            <li>
+              <a href="{{ route('galeribidangumum.index') }}">
+                <i class="bi bi-circle"></i><span>Bidang Umum</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('pokja1.index') }}">
+                <i class="bi bi-circle"></i><span>Kelompok Kerja 1</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('pokja2.index') }}">
+                <i class="bi bi-circle"></i><span>Kelompok Kerja 2</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('pokja3.index') }}">
+                <i class="bi bi-circle"></i><span>Kelompok Kerja 3</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('pokja4.index') }}">
+                <i class="bi bi-circle"></i><span>Kelompok Kerja 4</span>
+              </a>
+            </li>
+          </ul>
+        </li><!-- End Components Nav -->
   
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-            <i class="fa-solid fa-book"></i><span>Tinjauan Laporan</span><i class="bi bi-chevron-down ms-auto"></i>
+            <i class="fa-solid fa-book"></i><span>Kelompok Kerja</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="components-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
             <li>
-              <a href="{{ route('kesehatan.index') }}">
-                <i class="bi bi-circle"></i><span>Kesehatan</span>
+              <a href="{{ route('accbidangumum.index') }}">
+                <i class="bi bi-circle"></i><span>Bidang Umum</span>
               </a>
             </li>
             <li>
-              <a href="{{ route('kelestarian_lingkungan_hidup.index') }}">
-                <i class="bi bi-circle"></i><span>Kelestarian Lingkungan Hidup</span>
+              <a href="{{ route('pokja1.index') }}">
+                <i class="bi bi-circle"></i><span>Kelompok Kerja 1</span>
               </a>
             </li>
             <li>
-              <a href="{{ route('perencanaan_sehat.index') }}">
-                <i class="bi bi-circle"></i><span>Perencanaan Sehat</span>
+              <a href="{{ route('pokja2.index') }}">
+                <i class="bi bi-circle"></i><span>Kelompok Kerja 2</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('pokja3.index') }}">
+                <i class="bi bi-circle"></i><span>Kelompok Kerja 3</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('pokja4.index') }}">
+                <i class="bi bi-circle"></i><span>Kelompok Kerja 4</span>
               </a>
             </li>
           </ul>
@@ -122,7 +163,7 @@
         </li>
   
         <li class="nav-item">
-          <a class="nav-link collapsed" href="/logout" onclick="return confirm('Apakah anda yakin ingin keluar?')">
+          <a class="nav-link collapsed" href="logout" onclick="return confirm('Apakah anda yakin ingin keluar?')">
             <i class="fa-solid fa-right-from-bracket"></i>
             <span>Keluar</span>
           </a>
@@ -162,7 +203,7 @@
 
                 <div class="form-outline mb-4">
                     <label for="deskripsi" class="form-label">Deskripsi</label>
-                    <textarea class="form-control" name="deskripsi" rows="6" id="deskripsi" placeholder="Masukkan Dekripsi Berita" required oninvalid="this.setCustomValidity('Harap lengkapi deskripsi')" 
+                    <textarea class="form-control" name="deskripsi" rows="6" id="deskripsi" placeholder="Masukkan Deskripsi Berita" required oninvalid="this.setCustomValidity('Harap lengkapi deskripsi')" 
                     oninput="this.setCustomValidity('')"></textarea>
                 </div>
               
@@ -219,13 +260,13 @@
                     <td>{{ Str::limit($berita->deskripsi, 25) }}</td>
                     <td>{{ Str::limit($berita->file, 20) }}</td>
                     <td>
-                        <a href="{{ route('input_berita.edit', $berita->id) }}" class="btn btn-sm btn-tambah">EDIT</a>
+                        <a href="{{ route('input_berita.edit', $berita->id) }}" class="btn btn-sm btn-tambah">Edit</a>
 
                         <form action="{{ route('input_berita.destroy', $berita->id)}}" method="POST" class="d-inline">
                           @csrf
                           @method('DELETE')
                           <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus berita?')"
-                          >Delete</button>
+                          >Hapus</button>
                       </form>
                       
                     </td>

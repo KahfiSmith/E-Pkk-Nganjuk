@@ -31,7 +31,8 @@ class InputBeritaController extends Controller
         ]);
         if ($request->file('file')) {
         $imageName = $request->file('image')->getClientOriginalName();
-        $request->image->storeAs('public/berita', $imageName);
+        $tujuan_upload = 'storage/berita';
+        $request->image->move($tujuan_upload, $imageName);
 
         $file = $request->file('file');
         $file->getClientOriginalName();
@@ -40,7 +41,8 @@ class InputBeritaController extends Controller
         $file->getSize();
         $file->getMimeType();
         $file = $request->file('file')->getClientOriginalName();
-        $request->file->storeAs('public/berita/file', $file);
+        $tujuan_upload = 'storage/berita/file';
+        $request->file->move($tujuan_upload, $file);
 
         Berita::create([
             'image' => $imageName,
@@ -50,7 +52,8 @@ class InputBeritaController extends Controller
         ]);
     }else{
         $imageName = $request->file('image')->getClientOriginalName();
-        $request->image->storeAs('public/berita', $imageName);
+        $tujuan_upload = 'storage/berita';
+        $request->image->move($tujuan_upload, $imageName);
         Berita::create([
             'image' => $imageName,
             'judul' => $request->judul,
@@ -71,9 +74,8 @@ class InputBeritaController extends Controller
 
         if ($request->file('image') ) {
             $imageName = $request->file('image')->getClientOriginalName();
-            $request->image->storeAs('public/berita', $imageName);
-
-            Storage::delete('public/berita/'.$data->image);
+            $tujuan_upload = 'storage/berita';
+            $request->image->move($tujuan_upload, $imageName);
 
             $data->update([
                 'image' => $imageName,
@@ -88,9 +90,8 @@ class InputBeritaController extends Controller
             $file->getSize();
             $file->getMimeType();
             $file = $request->file('file')->getClientOriginalName();
-            $request->file->storeAs('public/berita/file', $file);
-
-            Storage::delete('public/berita/file'.$data->file);
+            $tujuan_upload = 'storage/berita';
+            $request->file->move($tujuan_upload, $file);
 
             $data->update([
                 'judul' => $request->judul,
@@ -117,9 +118,6 @@ class InputBeritaController extends Controller
     {
         
         $data = Berita::find($id);
-
-        Storage::delete('public/berita'.$data->image);
-        Storage::delete('public/berita/file'.$data->file);
 
         $data->delete();
 

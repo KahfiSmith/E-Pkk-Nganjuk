@@ -3,14 +3,20 @@
 namespace App\Http\Controllers\backend;
 
 use Illuminate\Http\Request;
-use App\Models\KelestarianLingkunganHidup;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\KelestarianLingkunganHidup;
 
 class KelestarianLingkunganHidupController extends Controller
 {
     public function index() {
-        $data =  KelestarianLingkunganHidup::orderBy('id_kelpangan', 'desc')->where('status', 'pending')->orWhere('status', 'proses')->get();
-        return view('backend.kelestarian_lingkungan_hidup', compact('data'));
+        $kelestarian1 = DB::table('laporan_kelestarian_lingkungan_hidup')
+        ->join('penggunas', 'laporan_kelestarian_lingkungan_hidup.id_user', '=', 'penggunas.id')
+        ->select('laporan_kelestarian_lingkungan_hidup.*', 'penggunas.nama_kec')
+        ->where('laporan_kelestarian_lingkungan_hidup.status', 'proses')
+        ->orderBy('id_kelpangan', 'desc')
+        ->get();
+        return view('backend.kelestarian_lingkungan_hidup', compact('kelestarian1'));
     }
     public function edit(string $id_kelpangan)
     {
@@ -28,9 +34,9 @@ class KelestarianLingkunganHidupController extends Controller
                 'pdam' => $request->pdam,
                 'sumur' => $request->sumur,
                 'dll' => $request->dll,
-                'gambar_upload' => $request->gambar_upload,
                 'id_user' => $request->id_user,
                 'status' => $request->status,
+                'catatan' => $request->catatan,
                 'tanggal' => $request->tanggal,
             ]);
         return redirect()->route('kelestarian_lingkungan_hidup.index')->with(['success' => 'Berhasil Mengubah Status']);

@@ -13,4 +13,4 @@ class Galeri extends Model
         'id'
     ];
 }
-    $galerys = Galeri::groupBy('judul');
+    // $galerys = Galeri::groupBy('deskripsi');

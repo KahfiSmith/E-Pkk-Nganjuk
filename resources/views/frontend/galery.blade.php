@@ -31,34 +31,12 @@
       @forelse ($galerys as $tampil)
       <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
 
-        <div class="col-lg-3 col-md-3 portfolio-item filter-app">
-          <img src="{{ asset('frontend/assets/img/galeri/'.$tampil->gambar1) }}" class="img-fluid" alt="">
-          <div class="portfolio-info ">
-            <h4 class="text-break">kegiatan pkk di nganjuk jawa timur berdepatan di desa candirejo melibatkan 200 orang</h4>
-            <p >{{ $tampil->tanggal }}</p>
-            {{-- <a href="{{ asset ('frontend/assets/img/team-2.jpg')}}" data-gallery="portfolioGallery"
-            class="portfolio-lightbox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
-            <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-            --}}
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-3 portfolio-item filter-web">
-          <img src="{{ asset('frontend/assets/img/galeri/'.$tampil->gambar1) }}" class="img-fluid" alt="">
-          <div class="portfolio-info">
-            <h4 class="text-break">{{ $tampil->judul }}</h4>
-            <p>{{ $tampil->tanggal }}</p>
-
-          </div>
-        </div>
-
         <div class="col-lg-3 col-md-3 portfolio-item filter-card">
-          <img src="{{ asset('frontend/assets/img/galeri/'.$tampil->gambar1) }}" class="img-fluid" alt="">
+          <img src="{{ asset('frontend2/gallery2/'.$tampil->gambar) }}" class="img-fluid" alt="">
           <div class="portfolio-info">
-            <h4 class="text-break">{{ $tampil->judul }}</h4>
+            <h4 class="text-break">{{ $tampil->deskripsi }}</h4>
             <p>{{ $tampil->tanggal }}</p>
           </div>
-
         </div>
         @empty
         Data Post belum Tersedia.

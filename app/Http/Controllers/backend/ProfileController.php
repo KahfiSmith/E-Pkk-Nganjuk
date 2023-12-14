@@ -19,7 +19,6 @@ class ProfileController extends Controller
         $request->validate([
             'name' => 'nullable|string|max:255',
             'email' => 'nullable|string|email|max:255',
-            'nomer_telepon' => 'nullable|max:13|min:10',
             'alamat' => 'nullable|string|max:255',
         ], [
             'nomer_telepon.max' => 'Nomer telepon tidak boleh melebihi :max karakter',

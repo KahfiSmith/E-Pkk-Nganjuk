@@ -1,5 +1,5 @@
 @php
-$galerys = App\Models\Galeri::orderBy('judul','ASC')->limit(6)->get();
+$galerys = App\Models\Galeri::orderBy('deskripsi','ASC')->limit(6)->get();
 @endphp
 @extends('frontend/layouts.template')
 
@@ -34,7 +34,7 @@ $galerys = App\Models\Galeri::orderBy('judul','ASC')->limit(6)->get();
 
       <div class="row">
         <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
-          <img src="{{ asset ('frontend/assets/img/foto-ketua-pkk.jpg')}}" class="img-fluid" alt="">
+          <img src="{{ asset ('frontend/assets/img/ketua_pkk.png')}}" class="img-fluid" alt="">
         </div>
         <div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center" data-aos="fade-up"
           data-aos-delay="100">
@@ -369,9 +369,9 @@ $galerys = App\Models\Galeri::orderBy('judul','ASC')->limit(6)->get();
       <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200" >
         @forelse ($galerys as $tampil)
         <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-          <img src="{{ asset('frontend/assets/img/galeri/'.$tampil->gambar1) }}" class="img-fluid" alt="">
+          <img src="{{ asset('frontend2/gallery2/'.$tampil->gambar) }}" class="img-fluid" alt="">
           <div class="portfolio-info">
-            <h4 >{{ $tampil->judul }}</h4>
+            <h4 >{{ $tampil->deskripsi }}</h4>
             <p>{{ $tampil->tanggal }}</p>
             {{-- <a href="{{ asset ('frontend/assets/img/team-2.jpg')}}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
             <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a> --}}
@@ -443,7 +443,7 @@ $galerys = App\Models\Galeri::orderBy('judul','ASC')->limit(6)->get();
         <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="500">
           <div class="card">
             <div class="card-img">
-              <img src="{{ asset ('frontend/assets/img/u.jpg')}}" alt="" class="img-fluid">
+              <img src="{{ asset ('frontend/assets/img/i.jpeg')}}" alt="" class="img-fluid">
             </div>
             <h3><a href="{{ route('pokjafou.index') }}" class="stretched-link">Kelompok Kerja 4</a></h3>
             <p>Membidangi Kesehatan Keluarga dan Lingkungan, diantaranya mengelola program kesehatan, Kelestarian

@@ -46,20 +46,6 @@
   <!-- ======= Footer ======= -->
   <footer id="footer">
 
-    {{-- <div class="footer-newsletter">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-6">
-            <h4>Join Our Newsletter</h4>
-            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
-            </form>
-          </div>
-        </div>
-      </div>
-    </div> --}}
-
     <div class="footer-top">
       <div class="container">
         <div class="row">
@@ -69,23 +55,32 @@
             <div class="mt-3">
               <h6 class="p-2 ">Kontak :</h6>
               <div class="p-2 "><a href="#" class=""><i class="bi bi-whatsapp"></i></a> 087754215178</div>
-              <div class="p-2 "><a href="#" class="email"><i class="bi bi-envelope"></i></a> pkk.kabnganjuk@gmail.com</div>
+              <div class="p-2 "><a href="#" class="email"><i class="bi bi-envelope"></i></a> admin@pkk-nganjuk.my.id</div>
+            <div class="p-2 "><a href="#" class=""><i class="bi bi-geo-alt-fill"></i></a>Jl. Dermojoyo No.21, Payaman, Kec. Nganjuk, Kabupaten Nganjuk, Jawa Timur 64418</div>
             </div>
           </div>
 
-         
-
-          <div class="col-lg-4 col-md-6 footer-links">
-            <h6 class="p-2 ">Alamat :</h6>
-            <p class="p-2 ">Jl. Dermojoyo No.21, Payaman, Kec. Nganjuk, Kabupaten Nganjuk, Jawa Timur 64418</p> 
-          </div>
-
-          <div class="col-lg-4 col-md-6 footer-links">
+          <div class="col-lg-4 col-md-6 footer-links" style="pointer-events: none;">
             <h6 class="p-2 ">Jumlah Pengunjung :</h6>
-            <p class=" ">Hari ini :&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;2</p> 
-            <p class=" ">Bulan ini :&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&ensp;&ensp;13</p>
-            <p class=" ">Tahun ini :&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;24</p>
-            <p class=" ">Semua Pengunjung :&emsp;&emsp;90</p>
+             <p class=" ">Hari ini :&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{ $visitor->count }}</p> 
+             <p class=" ">Minggu ini :&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&ensp;&ensp;{{ $totalMinggu }}</p>
+            <p class=" ">Bulan ini :&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&ensp;&ensp;{{ $totalBulan }}</p>
+            <p class=" ">Tahun ini :&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;{{ $totalTahun }}</p>
+            <p class=" ">Semua Pengunjung :&emsp;&emsp;&emsp;{{ $totalVisitors }}</p>
+			</ul>
+          </div>
+    
+          <div class="col-lg-4 col-md-6 footer-links" style="pointer-events: none;">
+            <h6 class="p-2 ">IP Pengunjung anda :</h6>
+            <?php
+            if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+                $visitorIP = $_SERVER['HTTP_X_FORWARDED_FOR'];
+            } else {
+                $visitorIP = $_SERVER['REMOTE_ADDR'];
+            }
+            
+            echo "Alamat IP pengunjung: " . $visitorIP;
+?>
           </div>
 
          
@@ -96,7 +91,7 @@
 
     <div class="container py-4">
       <div class="copyright">
-        &copy; Copyright <strong><span>TP - PKK Kabupaten Nganjuk</span></strong>. All Rights Reserved
+        &copy; Copyright <strong><span>A4 & B1 Politeknik Negeri Jember</span></strong>. All Rights Reserved
       </div>
       <div class="credits">
         <!-- All the links in the footer should remain intact. -->

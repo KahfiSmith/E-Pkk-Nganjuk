@@ -14,6 +14,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Str;
+use App\Models\Visitor;
+use Carbon\Carbon;
 
 class BeritaController extends Controller
 {
@@ -28,8 +30,32 @@ class BeritaController extends Controller
      *
       * @return View
      */
-    public function index(Request $request): View
-    {
+
+    public function index(Request $request){
+        $today = now()->format('Y-m-d');
+        $visitor = Visitor::firstOrNew(['tanggal' => $today]);
+        $visitor->count++;
+        $visitor->save();
+        
+        $startOfWeek = Carbon::now()->startOfWeek();
+        $endOfWeek = Carbon::now()->endOfWeek();
+
+        $totalMinggu = Visitor::whereBetween('tanggal', [$startOfWeek, $endOfWeek])
+        ->sum('count');
+        
+        $startOfMonth = Carbon::now()->startOfMonth();
+        $endOfMonth = Carbon::now()->endOfMonth();
+
+        $totalBulan = Visitor::whereBetween('tanggal', [$startOfMonth, $endOfMonth])
+        ->sum('count');
+        
+        $startOfYear = Carbon::now()->startOfYear();
+        $endOfYear = Carbon::now()->endOfYear();
+
+        $totalTahun = Visitor::whereBetween('tanggal', [$startOfYear, $endOfYear])
+        ->sum('count');
+        
+        $totalVisitors = Visitor::sum('count');
         
         if ($request->has('search')){
             $beritas = Berita::where('judul','LIKE','%' .$request->search.'%')->paginate(3);
@@ -39,8 +65,7 @@ class BeritaController extends Controller
         
         
         //render view with posts
-        return view('frontend.berita', compact('beritas'));
-       
+        return view('frontend.berita', compact('beritas', 'visitor', 'totalMinggu', 'totalBulan', 'totalTahun', 'totalVisitors'));
         
     }
      
@@ -55,8 +80,37 @@ class BeritaController extends Controller
         //get post by ID
         $post = Berita::findOrFail($id);
 
+        $today = now()->format('Y-m-d');
+        $visitor = Visitor::firstOrNew(['tanggal' => $today]);
+        $visitor->count++;
+        $visitor->save();
+        
+        $startOfWeek = Carbon::now()->startOfWeek();
+        $endOfWeek = Carbon::now()->endOfWeek();
+
+        $totalMinggu = Visitor::whereBetween('tanggal', [$startOfWeek, $endOfWeek])
+        ->sum('count');
+        
+        $startOfMonth = Carbon::now()->startOfMonth();
+        $endOfMonth = Carbon::now()->endOfMonth();
+
+        $totalBulan = Visitor::whereBetween('tanggal', [$startOfMonth, $endOfMonth])
+        ->sum('count');
+        
+        $startOfYear = Carbon::now()->startOfYear();
+        $endOfYear = Carbon::now()->endOfYear();
+
+        $totalTahun = Visitor::whereBetween('tanggal', [$startOfYear, $endOfYear])
+        ->sum('count');
+        
+        $totalVisitors = Visitor::sum('count');
+        
+        //render view with posts
+        return view('frontend.show', compact('visitor', 'totalMinggu', 'totalBulan', 'totalTahun', 'totalVisitors', 'post'));
+
+        
+
         //render view with post
-        return view('frontend.show', compact('post'));
     }
     // public function index(){
     //     $berita = Berita::get();

@@ -9,7 +9,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Perencanaan Sehat</title>
+  <title>Laporan</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -67,7 +67,12 @@
             <span>Dashboard</span>
           </a>
         </li><!-- End Dashboard Nav -->
-  
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="{{ route('ttd.index') }}">
+          <i class="fa-solid fa-signature"></i>
+            <span>Tanda Tangan</span>
+          </a>
+        </li><!-- End Dashboard Nav -->
         <li class="nav-item">
           <a class="nav-link collapsed" href="{{ route('input_berita.index') }}">
             <i class="fa-solid fa-newspaper"></i>
@@ -83,35 +88,70 @@
         </li><!-- End Dashboard Nav -->
 
         <li class="nav-item">
-          <a class="nav-link collapsed" href="{{ route('galeri.index') }}">
-            <i class="fa-solid fa-image"></i>
-            <span>Galeri</span>
+          <a class="nav-link collapsed" data-bs-target="#galeri_nav" data-bs-toggle="collapse" href="#">
+            <i class="fa-solid fa-image"></i><span>Galeri</span><i class="bi bi-chevron-down ms-auto"></i>
           </a>
-        </li><!-- End Profile Page Nav -->
-  
-        <li class="nav-item">
-          <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-            <i class="fa-solid fa-book"></i><span>Tinjauan Laporan</span><i class="bi bi-chevron-down ms-auto"></i>
-          </a>
-          <ul id="components-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
+          <ul id="galeri_nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
             <li>
-              <a href="{{ route('kesehatan.index') }}">
-                <i class="bi bi-circle"></i><span>Kesehatan</span>
+              <a href="{{ route('galeribidangumum.index') }}">
+                <i class="bi bi-circle"></i><span>Bidang Umum</span>
               </a>
             </li>
             <li>
-              <a href="{{ route('kelestarian_lingkungan_hidup.index') }}">
-                <i class="bi bi-circle"></i><span>Kelestarian Lingkungan Hidup</span>
+              <a href="{{ route('galeripokja1.index') }}">
+                <i class="bi bi-circle"></i><span>Kelompok Kerja 1</span>
               </a>
             </li>
             <li>
-              <a href="{{ route('perencanaan_sehat.index') }}" class="active">
-                <i class="bi bi-circle"></i><span>Perencanaan Sehat</span>
+              <a href="{{ route('galeripokja2.index') }}">
+                <i class="bi bi-circle"></i><span>Kelompok Kerja 2</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('galeripokja3.index') }}">
+                <i class="bi bi-circle"></i><span>Kelompok Kerja 3</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('galeripokja4.index') }}">
+                <i class="bi bi-circle"></i><span>Kelompok Kerja 4</span>
               </a>
             </li>
           </ul>
         </li><!-- End Components Nav -->
-
+  
+        <li class="nav-item">
+          <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+            <i class="fa-solid fa-book"></i><span>Kelompok Kerja</span><i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+          <ul id="components-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
+            <li>
+              <a href="{{ route('accbidangumum.index') }}">
+                <i class="bi bi-circle"></i><span>Bidang Umum</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('pokja1.index') }}">
+                <i class="bi bi-circle"></i><span>Kelompok Kerja 1</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('pokja2.index') }}">
+                <i class="bi bi-circle"></i><span>Kelompok Kerja 2</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('pokja3.index') }}">
+                <i class="bi bi-circle"></i><span>Kelompok Kerja 3</span>
+              </a>
+            </li>
+            <li>
+              <a href="{{ route('pokja4.index') }}" class="active">
+                <i class="bi bi-circle"></i><span>Kelompok Kerja 4</span>
+              </a>
+            </li>
+          </ul>
+        </li><!-- End Components Nav -->
         <li class="nav-heading">Halaman</li>
 
         <li class="nav-item">
@@ -122,7 +162,7 @@
         </li>
   
         <li class="nav-item">
-          <a class="nav-link collapsed" href="/logout" onclick="return confirm('Apakah anda yakin ingin keluar?')">
+          <a class="nav-link collapsed" href="{{ route('logout') }}" onclick="return confirm('Apakah anda yakin ingin keluar?')">
             <i class="fa-solid fa-right-from-bracket"></i>
             <span>Keluar</span>
           </a>
@@ -147,8 +187,6 @@
                 @csrf   
                 @method('PUT')
                 <div class="form-outline mb-4">
-                    
-                    <!-- <img src="{{ asset('frontend/assets/img/galeri/'.$data->gambar1) }}" alt="{{ $data->judul }}" class="rounded" width="200"> -->
 
                 <div class="form-outline mb-4 mt-3">
                     <label for="id_p_sehat" class="form-label">ID Laporan Kesehatan</label>
@@ -198,23 +236,30 @@
                     placeholder="Masukkan Judul" value="{{ $data->Kk_tbg }}"/>
                 </div>
 
-                <div class="form-outline mb-4">
-                    <label for="status" class="form-label">Status</label>
-                    <select name="status" class="datepicker-trigger form-control hasDatepicker" onchange="exibeMsg(this.value);">
-                      <option value="">--Pilih--</option>  
-                      <option value="Proses">Review  </option>
-                      <option value="Selesai">Upload</option>
-                    </select>
-                    </div>
-                </div>
+              <div class="form-outline mb-4 mt-3">
+                <label for="id_user" class="form-label">Id Pengguna</label>
+                <input type="text" name="id_user" id="id_user" class="form-control"
+                required readonly oninvalid="this.setCustomValidity('Harap lengkapi judul')" 
+                oninput="this.setCustomValidity('')" 
+                placeholder="Masukkan Judul" value="{{ $data->id_user }}"/>
+            </div>
 
-                <div class="form-outline mb-4 mt-3">
-                    <label for="id_user" class="form-label">Id Pengguna</label>
-                    <input type="text" name="id_user" id="id_user" class="form-control"
-                    required readonly oninvalid="this.setCustomValidity('Harap lengkapi judul')" 
-                    oninput="this.setCustomValidity('')" 
-                    placeholder="Masukkan Judul" value="{{ $data->id_user }}"/>
-                </div>
+            <div class="form-outline mb-4">
+              <label for="status" class="form-label">Status</label>
+              <select name="status" class="datepicker-trigger form-control hasDatepicker" onchange="exibeMsg(this.value);">
+                <option value="">--Pilih--</option>  
+                <option value="Revisi">Revisi</option>
+                <option value="Disetujui">Disetujui</option>
+              </select>
+              </div>
+          </div>
+
+          <div class="form-outline mb-1 mt-3">
+              <label for="catatan" class="form-label">Catatan</label>
+              <input type="text" name="catatan" id="catatan" class="form-control"
+              placeholder="Masukkan Catatan" value="{{ $data->catatan }}"/>
+          </div>
+          <p class="mb-4">*Jika laporan perlu di revisi maka bisa menambahkan catatan dan catatan hanya di isi jika status laporan menjadi <b>Revisi</b></p>
 
                 <div class="form-outline mb-4 mt-3">
                     <label for="tanggal" class="form-label">Tanggal</label>
@@ -222,15 +267,6 @@
                     required readonly oninvalid="this.setCustomValidity('Harap lengkapi judul')" 
                     oninput="this.setCustomValidity('')" 
                     placeholder="Masukkan Judul" value="{{ $data->tanggal }}"/>
-                </div>
-
-                <div class="form-outline mb-4 mt-3">
-                    <label for="gambar" class="form-label">Gambar</label>
-                    <input type="text" name="gambar" id="gambar" class="form-control"
-                    value="{{ $data->gambar }}"/>
-                    @if ($data->gambar)
-                    <img src="{{ asset('frontend2/assets/Bidang_Perencaan_Sehat/'.$data->gambar) }}" alt="{{ $data->judul }}" class="rounded mt-3" width="200" height="200">
-                    @endif
                 </div>
   
                 <div class="text-end pt-1 pb-1 mt-4">

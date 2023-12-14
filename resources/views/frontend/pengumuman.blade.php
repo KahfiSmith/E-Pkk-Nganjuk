@@ -2,7 +2,7 @@
 
 @section('content')
 <div id="cekk">
-    <p class="text-center fs-1">Galeri kegiatan PKK Kabupaten Nganjuk</p>
+    <p class="text-center fs-1">Pengumuman PKK Kabupaten Nganjuk</p>
     </div>
         <!-- Breadcrumb -->
         <div class="container">
