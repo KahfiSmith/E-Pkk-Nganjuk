@@ -183,7 +183,7 @@
           </div><!-- End Page Title -->
           <div class="card">
             <div class="card-body mt-4">
-              <form action="{{ route('bidangumum.update', $data->id_laporan_umum ) }}" method="POST" enctype="multipart/form-data">
+              <form action="{{ route('bidangumum.update', $data->id_laporan_umum ) }}" method="POST" enctype="multipart/form-data" onsubmit="return confirmSubmission()">
 
                 @csrf   
                 @method('PUT')
@@ -395,7 +395,19 @@
 
 <!-- Template Main JS File -->
 <script src="{{ asset('backend/assets/js/main.js') }}"></script>
-
+<script>
+function confirmSubmission() {
+  var status = document.querySelector('select[name="status"]').value;
+  if (status === "Revisi") {
+    return confirm('Apakah Anda yakin ingin mengubah status menjadi Revisi? Catatan perlu diisi.');
+  } else if (status === "Disetujui") {
+    return confirm('Apakah Anda yakin ingin menyetujui laporan ini?');
+  } else {
+    alert('Harap pilih status laporan.');
+    return false; // Prevent form submission if no status is selected
+  }
+}
+</script>
 </body>
 
 {{-- </html> --}}

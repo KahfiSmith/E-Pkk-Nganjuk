@@ -1,10 +1,10 @@
 <!-- ======= Header ======= -->
 <header id="header" class="d-flex align-items-center">
     <div class="container d-flex align-items-center justify-content-between">
-      <div class="logo">
+      <div class="d-flex gap-3"><div class="logo">
         <img src="{{ asset ('frontend/assets/img/favicon.png')}}" class="img-fluid" alt="">
       </div>
-      <h1 class="logo"><a href="home">Pemberdayaan Kesejahteraan Keluarga </br>Kabupaten Nganjuk<span>.</span></a></h1>
+      <h1 class="logo"><a href="home">Pemberdayaan Kesejahteraan Keluarga </br>Kabupaten Nganjuk<span></span></a></h1></div>
 
       <nav id="navbar" class="navbar">
         <ul>

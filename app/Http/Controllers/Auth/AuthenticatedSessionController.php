@@ -38,5 +38,3 @@ class AuthenticatedSessionController extends Controller
         return redirect('/home')->with('success', 'Anda telah berhasil keluar!');
     }
 }
-
-
