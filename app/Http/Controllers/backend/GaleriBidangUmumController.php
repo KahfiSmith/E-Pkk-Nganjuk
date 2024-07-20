@@ -46,7 +46,7 @@ class GaleriBidangUmumController extends Controller
     public function filter(Request $request)
     { 
         if ($request->has('search')) {
-            $bidangumum = Galeri::where('tanggal', 'LIKE', '%' . $request->search . '%')->where('pokja', 'pokja I')->where('bidang', 'bidang umum')->where('detail_gambar', '1.1')->where('status', 'upload')->orderBy('tanggal', 'ASC')->get();
+            $bidangumum = Galeri::where('tanggal', 'LIKE', '%' . $request->search . '%')->where('pokja', 'pokja I')->where('bidang', 'bidang umum')->where('status', 'upload')->orderBy('tanggal', 'ASC')->get();
 
             $bidangumum1 = Galeri::where('tanggal', 'LIKE', '%' . $request->search . '%')->where('pokja', 'pokja I')->where('bidang', 'bidang umum')->where('status', 'upload')->orderBy('tanggal', 'ASC')->get();
 
